@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="keywords" content="">        
+
+        <link rel="stylesheet" media="screen" href="eventize/css/eventize.css">
+        
+        <style>
+        	body { 
+        		font-family: Verdana, Tahoma, Arial; 
+        		padding: 40px;
+        	}
+        	a:hover,a:focus { 
+        		color: red !important;
+        	}
+        	.example-container { 
+        		background: #ddd;
+        		border: 1px solid #ccc;
+        		padding: 10px;
+        	}
+        	.example-container h1 { 
+        		margin: 0; 
+        		padding: 0;
+        	}
+        	hr { 
+        		background: #ddd;
+        		border: none;
+        		height: 1px;
+        		margin: 30px 0;
+        	}
+        	.social li { 
+        		display: inline-block;
+        	}
+        	.social .track { 
+				color: @default;
+				cursor: pointer;
+				font-size: 2em;				
+				margin: 0 8px 0 0;
+				position: relative;        	
+        	}
+        	ul { 
+        		list-style-type: none;
+        		margin: 0;
+        		padding: 0;
+        	}        	
+        </style>
+		
+        <title>Eventize | A jQuery-based Event Tracking Plugin</title>		
+
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'YOUR-URCHIN-HERE']);
+				_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>	        
+    </head>
+    <body>    	
+	<div>
+		
+		<h1>Eventize</h1>
+		
+		<h2>A jQuery-based plugin for easily tracking events via Google Analytics</h2>
+		<p>
+			Easily track events via Google Analytics assigned to any "eventize(d)" location. The basic example would be to simply
+			include a linked item within an unordered list and then call $(".eventize").eventize() on that list. Any item with the class
+			"track" within the Eventize block will be monitored.
+		</p>
+<pre>
+<code>
+&lt;ul class="eventize"&gt;
+   &lt;li&gt;
+      &lt;a href="#" data-action="Track This Event"
+          data-category="Trackable Event"
+          data-label="User Clicked This"
+          class="track"&gt;Click Me&lt;/a&gt;
+   &lt;/li&gt;
+&lt;/ul&gt;
+</code>
+</pre>
+
+		<ul class="eventize">
+			<li>
+				<a href="#" data-action="Track This Event" data-category="Trackable Event" data-label="User Clicked This" class="track">Click Me and View the Console Log</a></li>
+			</li>
+		</ul>
+
+		<h3>Parameters</h3>
+		<p>
+			There really isn't much to it after that. Eventize a container and then another class of "track" to items within the container.
+			From there, you just need to declare the following attributes and Eventize will automagically pick them up.
+			<ul>
+				<li>data-action</li>
+				<li>data-category</li>
+				<li>data-label</li>
+				<li>data-url (Optional)</li>				
+			</ul>
+		</p>		
+		<p>
+			If you are unfamiliar with Actions, Categories and Labels, I suggest reading through <a href="https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide">Google Analytics definitions</a>.
+		</p>
+
+		<h3>data-url</h3>				
+		<p>
+			The data-url parameter is optional, but can be used to easily send a user to another location once Eventize has tracked the event. A good examle of this would be to
+			use a non-anchored element (i.e. &lt;em&gt; vs. &lt;a&gt;) for tracking an event, subsequently sending the user to a new page or a "mailto:" option.			
+		</p>
+
+		<h3>Debug Mode</h3>		
+		<p>
+			There are definitely times that you want to see what is going to be sent prior to hooking Eventize up to Google Analytics. In these cases, Eventize has been configured
+			with the option "debug". Currently this is the only option that Eventize supports, but debug mode will allow you to output the data that you are passing into Eventize 
+			to the console for review. This is obviously helpful for debugging without sending data to Google Analytics, etc. This can be accomplished by setting the debug 
+			option to true:			
+		</p>
+<pre>
+<code>
+   $(".eventize").eventize({ debug: true });
+</code>
+</pre>
+
+		<hr>
+		
+		<h2>Examples</h2>		
+		<ul class="eventize example-container">
+			<li><h1 data-action="Track This Header" data-category="Trackable Header" data-label="User Clicked This Header" class="track">Header</h1></li>			
+			<li><a href="#" data-action="Track This Link" data-category="Trackable Link" data-label="User Clicked This Link" class="track">Standard Links</a></li>
+			<li><em data-action="Track This EM" data-category="Trackable EM" data-label="User Clicked This EM" data-url="http://www.thehivemedia.com" class="track">Emphasized Text with Data-URL enabled</a></li>				
+			<li><strong data-action="Track This Strong" data-category="Trackable Strong" data-label="User Clicked This Strong" class="track">Bold Text</strong></li>
+		</ul>				
+		<h3>Works great on content areas also!</h3>		
+		<div class="eventize">
+			<div data-action="Track This Content" data-category="Trackable Content Area" data-label="User Clicked This Bit of Content" class="example-container track">
+				Some awesome content goes here and it is all considered an Event							
+			</div>
+		</div>
+		
+		<hr>		
+
+		<h3>Use with Font Awesome Social Icons</h3>
+		<p>
+			I love Font Awesome, so I use it all of the time. I have embedded it within this project for that reason. If you want to use Eventize without
+			Font Awesome, you are more than welcome to do so. <strong>To remove it from this project</strong>, simple delete the /eventize/font directory and delete the 
+			CSS below the comment stating the beginning of Font Awesome styles from within the eventize.css file.
+		</p>
+		<p>
+			<strong>If you want to use Font Awesome</strong>, as I mentioned, I have already built into this project's CSS file and have included the /font directory to 
+			gain access to the iconography. So, you don't really have to do anything! 
+		</p>
+		<p>
+			Also, since I use social icons a lot, I have included the basic social colors as part of the Eventize
+			CSS file. Here is an example of how to use Font Awesome and the social icons.		
+		</p>
+
+<pre>
+<code>
+&lt;ul class="eventize"&gt;
+   &lt;li&gt;&lt;em data-action="Facebook" data-category="Social" data-label="Went to Facebook" data-url="http://www.facebook.com" class="track facebook icon-facebook-sign" title="Facebook"&gt;&lt;/em&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;em data-action="Twitter" data-category="Social" data-label="Went to Twitter"  data-url="http://www.twitter.com" class="track twitter icon-twitter-sign" title="Twitter"&gt;&lt;/em&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;em data-action="Github" data-category="Social" data-label="Went to Github"  data-url="http://www.github.com" class="track github icon-github-sign" title="Github"&gt;&lt;/em&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;em data-action="Linkedin" data-category="Social" data-label="Went to Linkedin"  data-url="http://www.linkedin.com" class="track linkedin icon-linkedin-sign" title="Linkedin"&gt;&lt;/em&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;em data-action="Flickr" data-category="Social" data-label="Went to Flickr"  data-url="http://www.flickr.com" class="track flickr icon-flickr" title="Flickr"&gt;&lt;/em&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;em data-action="Instagram" data-category="Social" data-label="Went to Instagram"  data-url="http://www.instagram.com" class="track instagram icon-camera-retro" title="Instagram"&gt;&lt;/em&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;em data-action="Spotify" data-category="Social" data-label="Went to Spotify"  data-url="http://www.spotify.com" class="track spotify icon-music" title="Spotify"&gt;&lt;/em&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;em data-action="Daily Mile" data-category="Social" data-label="Went to Daily Mile"  data-url="http://www.dailymile.com" class="track dailymile icon-time" title="Daily Mile"&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code>		
+</pre>		
+	
+		<ul class="eventize example-container social">
+			<li><em data-action="Facebook" data-category="Social" data-label="Went to Facebook" data-url="http://www.facebook.com" class="track facebook icon-facebook-sign" title="Facebook"></em></li>
+			<li><em data-action="Twitter" data-category="Social" data-label="Went to Twitter"  data-url="http://www.twitter.com" class="track twitter icon-twitter-sign" title="Twitter"></em></li>					
+			<li><em data-action="Github" data-category="Social" data-label="Went to Github"  data-url="http://www.github.com" class="track github icon-github-sign" title="Github"></em></li>										
+			<li><em data-action="Linkedin" data-category="Social" data-label="Went to Linkedin"  data-url="http://www.linkedin.com" class="track linkedin icon-linkedin-sign" title="Linkedin"></em></li>
+			<li><em data-action="Flickr" data-category="Social" data-label="Went to Flickr"  data-url="http://www.flickr.com" class="track flickr icon-flickr" title="Flickr"></em></li>
+			<li><em data-action="Instagram" data-category="Social" data-label="Went to Instagram"  data-url="http://www.instagram.com" class="track instagram icon-camera-retro" title="Instagram"></em></li>
+			<li><em data-action="Spotify" data-category="Social" data-label="Went to Spotify"  data-url="http://www.spotify.com" class="track spotify icon-music" title="Spotify"></em></li>
+			<li><em data-action="Daily Mile" data-category="Social" data-label="Went to Daily Mile"  data-url="http://www.dailymile.com" class="track dailymile icon-time" title="Daily Mile"></em></li>
+		</ul>
+		
+		<hr>		
+
+		<h3>Additional</h3>
+		<p>
+			This project was built and compiled with <a href="https://incident57.com/codekit/">CodeKit</a> and <a href="http://kickoff.thehivemedia.com">CodeKit Kickoff</a>. If you aren't using these tools already, 
+			you are wasting time.
+		</p>
+		
+	</div>
+    	
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="eventize/js/eventize.min.js"></script>	
+		<script>
+			$(function() {
+				$(".eventize").eventize({ debug:true });				
+			});
+		</script>
+    </body>
+</html>		
