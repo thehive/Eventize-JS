@@ -8,13 +8,20 @@
 
 	$.fn.eventize = function( options ) { 
 		
-		$(this).find(".track").click(function() {
+		$(this).find(".track-hover").mouseover(function() {
+			eventize($(this));
+		});	
 		
+		$(this).find(".track-click").click(function() {
+			eventize($(this));
+		});	
+		
+		var eventize = function(obj) { 
 			var event = { 
-				action: $(this).attr("data-action"),
-				category: $(this).attr("data-category"),
-				label: $(this).attr("data-label"),
-				url: $(this).attr("data-url")
+				action: $(obj).attr("data-action"),
+				category: $(obj).attr("data-category"),
+				label: $(obj).attr("data-label"),
+				url: $(obj).attr("data-url")
 			},
 			
 			settings = $.extend({ 
@@ -34,9 +41,8 @@
 				if(event.url !== "" && event.url !== undefined) { 
 					window.open(event.url,"_blank");
 				}
-			}
-			
-		});	
+			}		
+		};
 
 	};
 

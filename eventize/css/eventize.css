@@ -3,31 +3,31 @@
 	Description: Default and Social Styles
 	Author: www.iamlesher.com	
 */
-.eventize .track.facebook {
+.eventize .track-click.facebook {
   color: #3b5998 !important;
 }
-.eventize .track.twitter {
+.eventize .track-click.twitter {
   color: #3b8aca !important;
 }
-.eventize .track.github {
+.eventize .track-click.github {
   color: #f7f7f7 !important;
 }
-.eventize .track.linkedin {
+.eventize .track-click.linkedin {
   color: #2c8cc0 !important;
 }
-.eventize .track.flickr {
+.eventize .track-click.flickr {
   color: #f80082 !important;
 }
-.eventize .track.instagram {
+.eventize .track-click.instagram {
   color: #37658d !important;
 }
-.eventize .track.spotify {
+.eventize .track-click.spotify {
   color: #7ab800 !important;
 }
-.eventize .track.dailymile {
+.eventize .track-click.dailymile {
   color: #ffaa25 !important;
 }
-.eventize .track.email {
+.eventize .track-click.email {
   color: #222222 !important;
 }
 /* 
